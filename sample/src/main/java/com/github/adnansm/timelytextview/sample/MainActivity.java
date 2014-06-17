@@ -44,7 +44,15 @@ public class MainActivity extends Activity {
                     objectAnimator = timelyView.animate(from, to);
                     objectAnimator.setDuration(DURATION);
                 } else {
-                    objectAnimator = null;
+                    if(to != NO_VALUE) {
+                        objectAnimator = timelyView.animate(to, true);
+                        objectAnimator.setDuration(DURATION);
+                    } else if(from != NO_VALUE) {
+                        objectAnimator = timelyView.animate(from, false);
+                        objectAnimator.setDuration(DURATION);
+                    } else {
+                        objectAnimator = null;
+                    }
                 }
             }
 
@@ -60,7 +68,15 @@ public class MainActivity extends Activity {
                     objectAnimator = timelyView.animate(from, to);
                     objectAnimator.setDuration(DURATION);
                 } else {
-                    objectAnimator = null;
+                    if(to != NO_VALUE) {
+                        objectAnimator = timelyView.animate(to, true);
+                        objectAnimator.setDuration(DURATION);
+                    } else if(from != NO_VALUE) {
+                        objectAnimator = timelyView.animate(from, false);
+                        objectAnimator.setDuration(DURATION);
+                    } else {
+                        objectAnimator = null;
+                    }
                 }
             }
 
@@ -69,6 +85,14 @@ public class MainActivity extends Activity {
 
             }
         });
+
+        int start = 1;
+        int end = 7;
+        fromSpinner.setSelection(start + 1);
+        toSpinner.setSelection(end + 1);
+
+        objectAnimator = timelyView.animate(start, end);
+        objectAnimator.setCurrentPlayTime(0);
 
         seekBar.setMax(DURATION);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
